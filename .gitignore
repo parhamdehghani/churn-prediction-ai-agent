@@ -1,0 +1,5 @@
+# ignore raw data of the project
+/data/raw
+# ignore all jupyter notebook files for initial experimentation with data files
+*.ipynb
+.ipynb_checkpoints/
