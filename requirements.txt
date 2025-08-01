@@ -1,0 +1,17 @@
+# Core Data and ML
+pyspark==3.3.2
+py4j==0.10.9.5
+pandas==1.5.3
+numpy==1.21.6
+scikit-learn==1.1.3
+xgboost==1.7.6
+pyarrow==8.0.0
+
+# MLOps and Tooling
+mlflow==2.14.1
+dvc[gcs]
+google-cloud-storage
+
+# Interactive Development
+jupyterlab
+findspark

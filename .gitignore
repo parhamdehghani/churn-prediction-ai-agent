@@ -1,5 +1,11 @@
 # ignore raw data of the project
 /data/raw
+/data/processed
 # ignore all jupyter notebook files for initial experimentation with data files
 *.ipynb
 .ipynb_checkpoints/
+# ignore temp test script
+test.py
+# temp files
+src/__pycache__
+src/churn_prediction/__pycache__
