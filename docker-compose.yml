@@ -31,5 +31,20 @@ services:
     depends_on:
       - db
 
+  # FastAPI Application
+  api:
+    build:
+      context: .
+    container_name: churn_api
+    ports:
+      - "8000:8080"
+    volumes:
+      - ~/.config/gcloud/application_default_credentials.json:/app/gcp-credentials.json:ro
+    environment:
+      - GOOGLE_APPLICATION_CREDENTIALS=/app/gcp-credentials.json
+      - GOOGLE_CLOUD_PROJECT=churn-prediction-ai-agent
+    depends_on:
+      - mlflow
+
 volumes:
   mlflow_postgres_data:

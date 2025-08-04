@@ -12,6 +12,15 @@ RUN pip wheel --no-cache-dir --wheel-dir /app/wheels -r requirements.txt
 # Stage 2: Final stage for the production image
 FROM python:3.10-slim
 
+# --- Install build dependencies ---
+RUN apt-get update && apt-get install -y cmake build-essential
+
+# --- Install Java and system utilities ---
+RUN apt-get update && apt-get install -y default-jre procps && rm -rf /var/lib/apt/lists/*
+
+# --- Set JAVA_HOME environment variable ---
+ENV JAVA_HOME /usr/lib/jvm/default-java
+
 WORKDIR /app
 
 # Create a non-root user for better security

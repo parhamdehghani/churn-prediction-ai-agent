@@ -19,7 +19,7 @@ class ChurnFeatures(BaseModel):
 
 # --- 2. Load the MLflow Pipeline Model ---
 # This assumes the MLflow server is running
-mlflow.set_tracking_uri("http://localhost:5001")
+mlflow.set_tracking_uri("http://mlflow:5000")
 logged_model_uri = "runs:/046054e68a604cd4a19760cfe140e180/spark-xgb-pipeline-model-best"
 model = mlflow.pyfunc.load_model(logged_model_uri)
 
