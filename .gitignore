@@ -9,3 +9,5 @@ test.py
 # temp files
 src/__pycache__
 src/churn_prediction/__pycache__
+src/churn_prediction/api/__pycache__
+.*
