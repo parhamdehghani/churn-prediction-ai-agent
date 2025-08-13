@@ -20,9 +20,13 @@ pipeline {
 
         stage('Pull DVC Data') {
             steps {
-                echo 'Pulling data with DVC...'
-                sh 'dvc pull --force'
-            }
+                // Authenticate with GCP before running dvc pull
+                withCredentials([file(credentialsId: 'gcp-service-account-key', variable: 'GCP_KEY_FILE')]) {
+                    sh "gcloud auth activate-service-account --key-file=${GCP_KEY_FILE}"
+
+                    echo 'Pulling data with DVC...'
+                    sh 'dvc pull --force'
+                }
         }
 
         stage('Run Tests') {
