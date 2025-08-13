@@ -4,6 +4,9 @@ FROM jenkins/jenkins:lts-jdk17
 # Switch to the root user to install tools
 USER root
 
+## Add jenkins user to the 'dialout' group (which has the GID of 20)
+RUN usermod -aG dialout jenkins
+
 # Install prerequisites for Docker and gcloud
 RUN apt-get update && apt-get install -y lsb-release curl gpg apt-transport-https ca-certificates
 
