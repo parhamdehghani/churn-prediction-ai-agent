@@ -18,7 +18,7 @@ pipeline {
             }
         }
 
-        stage('Pull DVC Data') {
+        /* stage('Pull DVC Data') {
     steps {
         withCredentials([file(credentialsId: 'gcp-service-account-key', variable: 'GCP_KEY_FILE')]) {
             // Set the environment variable for DVC and other Python libraries
@@ -29,7 +29,7 @@ pipeline {
                """
         }
     }
-}
+} */
 
         stage('Run Tests') {
             steps {
