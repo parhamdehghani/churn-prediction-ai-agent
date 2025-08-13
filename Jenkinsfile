@@ -19,16 +19,16 @@ pipeline {
         }
 
         stage('Pull DVC Data') {
-            steps {
-                // Authenticate with GCP *before* running dvc pull
-                withCredentials([file(credentialsId: 'gcp-service-account-key', variable: 'GCP_KEY_FILE')]) {
-                    sh "gcloud auth activate-service-account --key-file=${GCP_KEY_FILE}"
+    steps {
+        withCredentials([file(credentialsId: 'gcp-service-account-key', variable: 'GCP_KEY_FILE')]) {
+            // Set the environment variable for DVC and other Python libraries
+            sh "export GOOGLE_APPLICATION_CREDENTIALS=${GCP_KEY_FILE}"
 
-                    echo 'Pulling data with DVC...'
-                    sh 'dvc pull --force'
-                }
-            }
+            echo 'Pulling data with DVC...'
+            sh 'dvc pull --force'
         }
+    }
+}
 
         stage('Run Tests') {
             steps {
