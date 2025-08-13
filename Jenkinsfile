@@ -22,10 +22,11 @@ pipeline {
     steps {
         withCredentials([file(credentialsId: 'gcp-service-account-key', variable: 'GCP_KEY_FILE')]) {
             // Set the environment variable for DVC and other Python libraries
-            sh "export GOOGLE_APPLICATION_CREDENTIALS=${GCP_KEY_FILE}"
-
+            sh """
+            export GOOGLE_APPLICATION_CREDENTIALS=${GCP_KEY_FILE}
             echo 'Pulling data with DVC...'
-            sh 'dvc pull --force'
+            dvc pull --force
+               """
         }
     }
 }
