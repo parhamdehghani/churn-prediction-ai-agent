@@ -5,7 +5,7 @@ pipeline {
         // Define variables used across stages
         IMAGE_NAME = "churn-prediction-api"
         GCP_PROJECT_ID = "churn-prediction-ai-agent" 
-        GCP_REGION = "northamerica-northeast1"
+        GCP_REGION = "us-central1"
         REPO_NAME = "churn-repo"
         IMAGE_TAG = "${GCP_REGION}-docker.pkg.dev/${GCP_PROJECT_ID}/${REPO_NAME}/${IMAGE_NAME}:${BUILD_NUMBER}"
     }
