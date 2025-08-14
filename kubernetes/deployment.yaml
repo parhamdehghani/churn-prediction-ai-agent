@@ -1,0 +1,19 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: churn-api-deployment
+spec:
+  replicas: 2
+  selector:
+    matchLabels:
+      app: churn-api
+  template:
+    metadata:
+      labels:
+        app: churn-api
+    spec:
+      containers:
+      - name: churn-api-container
+        image: us-central1-docker.pkg.dev/churn-prediction-ai-agent/churn-repo/churn-prediction-api:latest
+        ports:
+        - containerPort: 8080
