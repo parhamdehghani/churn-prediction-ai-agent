@@ -49,11 +49,14 @@ pipeline {
                     // Configure Docker to authenticate with Artifact Registry
                     sh "gcloud auth configure-docker ${GCP_REGION}-docker.pkg.dev --quiet"
                     
-                    // Build the Docker image
-                    sh "docker build -t ${IMAGE_TAG} ."
-                    
-                    // Push the Docker image
-                    sh "docker push ${IMAGE_TAG}"
+                    // Build and push multi-platform Docker image
+                    sh """
+   			 docker buildx build \
+      			--platform linux/amd64,linux/arm64 \
+      			--tag ${IMAGE_TAG} \
+      			--push \
+      			.
+			"""
                 }
             }
         }
