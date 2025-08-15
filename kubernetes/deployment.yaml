@@ -12,8 +12,9 @@ spec:
       labels:
         app: churn-api
     spec:
+      serviceAccountName: churn-api-ksa
       containers:
       - name: churn-api-container
-        image: us-central1-docker.pkg.dev/churn-prediction-ai-agent/churn-repo/churn-prediction-api:latest
+        image: us-central1-docker.pkg.dev/churn-prediction-ai-agent/churn-repo/churn-prediction-api:18
         ports:
         - containerPort: 8080
