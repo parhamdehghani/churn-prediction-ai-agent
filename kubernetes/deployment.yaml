@@ -18,3 +18,19 @@ spec:
         image: us-central1-docker.pkg.dev/churn-prediction-ai-agent/churn-repo/churn-prediction-api:18
         ports:
         - containerPort: 8080
+        resources:
+          requests:
+            cpu: "1"         
+            memory: "4Gi"
+        readinessProbe:
+          httpGet:
+            path: /health
+            port: 8080
+          initialDelaySeconds: 30
+          periodSeconds: 10
+        livenessProbe:
+          httpGet:
+            path: /health
+            port: 8080
+          initialDelaySeconds: 300
+          periodSeconds: 20
