@@ -1,5 +1,5 @@
 # Stage 1: Build stage to install dependencies
-FROM python:3.10-slim AS builder
+FROM python:3.10-slim-bullseye AS builder
 
 WORKDIR /app
 
@@ -10,16 +10,16 @@ RUN pip wheel --no-cache-dir --wheel-dir /app/wheels -r requirements.txt
 
 
 # Stage 2: Final stage for the production image
-FROM python:3.10-slim
+FROM python:3.10-slim-bullseye
 
 # --- Install build dependencies ---
 RUN apt-get update && apt-get install -y cmake build-essential
 
 # --- Install Java and system utilities ---
-RUN apt-get update && apt-get install -y default-jre procps && rm -rf /var/lib/apt/lists/*
+RUN apt-get update && apt-get install -y openjdk-11-jre-headless procps && rm -rf /var/lib/apt/lists/*
 
 # --- Set JAVA_HOME environment variable ---
-ENV JAVA_HOME /usr/lib/jvm/default-java
+ENV JAVA_HOME /usr/lib/jvm/java-11-openjdk-amd64
 
 WORKDIR /app
 
