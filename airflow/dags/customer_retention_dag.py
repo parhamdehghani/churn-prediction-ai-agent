@@ -37,7 +37,7 @@ with DAG(
     # This task creates a Dataproc cluster, runs the bootstrap script, and then runs feature_engineering.py
     feature_engineering_job = PYSPARK_JOB_CONFIG.copy()
     # The script path is the local path INSIDE the cluster after the git clone in the bootstrap script
-    feature_engineering_job["pyspark_job"]["main_python_file_uri"] = "file:///churn-repo/src/churn_prediction/feature_engineering.py"
+    feature_engineering_job["pyspark_job"]["main_python_file_uri"] = "file:///churn-repo/src/churn_prediction/feature_engineering_cluster.py"
     
     feature_engineering_task = DataprocSubmitJobOperator(
         task_id="run_feature_engineering",
