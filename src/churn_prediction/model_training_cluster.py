@@ -16,7 +16,7 @@ def main():
     spark = SparkSession.builder.appName("ChurnModelTrainingCloud").getOrCreate()
         
     # Set the tracking URI to the MLflow service inside the GKE cluster
-    mlflow.set_tracking_uri("http://mlflow-service:5000")
+    mlflow.set_tracking_uri("http://localhost:5001")
     mlflow.set_experiment("KKBoxChurnPrediction")
 
     # --- Load Processed Data ---
