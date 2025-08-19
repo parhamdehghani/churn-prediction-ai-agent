@@ -48,10 +48,10 @@ def main():
 
         # Define hyperparameter grid
         paramGrid = ParamGridBuilder() \
-            .addGrid(xgb.n_estimators, [100, 200, 300, 400, 500]) \
-            .addGrid(xgb.max_depth, [5, 7, 10, 12, 15, 20]) \
-            .addGrid(xgb.learning_rate, [0.1, 0.05, 0.01]) \
-            .addGrid(xgb.subsample, [0.7, 0.8, 0.9, 1.0]) \
+            .addGrid(xgb.n_estimators, [100, 200]) \
+            .addGrid(xgb.max_depth, [5]) \
+            .addGrid(xgb.learning_rate, [0.1]) \
+            .addGrid(xgb.subsample, [0.7]) \
             .build()
 
         evaluator = BinaryClassificationEvaluator(labelCol="label", metricName="areaUnderROC")
