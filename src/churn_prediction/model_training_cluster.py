@@ -21,7 +21,7 @@ def main():
 
     # --- Load Processed Data ---
     # This path is where the bootstrap script places the data on the cluster
-    processed_path = "/churn-repo/data/processed/features.parquet"
+    processed_path = "gs://churn-prediction-ai-agent/data/processed/features.parquet"
     df_model = spark.read.parquet(processed_path)
     print("--- Processed Data Loaded ---")
     

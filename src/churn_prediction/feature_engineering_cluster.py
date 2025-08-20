@@ -10,7 +10,7 @@ def main():
 
     # --- Load Data ---
     data_path = "/churn-repo/data/raw/"
-    output_path = "/churn-repo/data/processed/"
+    output_path = "gs://churn-prediction-ai-agent/data/processed/"
     
     df_train = spark.read.csv(os.path.join(data_path, "train.csv"), header=True, inferSchema=True)
     df_members = spark.read.csv(os.path.join(data_path, "members.csv"), header=True, inferSchema=True)
