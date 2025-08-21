@@ -9,13 +9,13 @@ def main():
     spark = SparkSession.builder.appName("ChurnFeatureEngineering").getOrCreate()
 
     # --- Load Data ---
-    data_path = "/churn-repo/data/raw/"
+    data_path = "gs://churn-prediction-ai-agent/dvc/files/md5/"
     output_path = "gs://churn-prediction-ai-agent/data/processed/"
     
-    df_train = spark.read.csv(os.path.join(data_path, "train.csv"), header=True, inferSchema=True)
-    df_members = spark.read.csv(os.path.join(data_path, "members.csv"), header=True, inferSchema=True)
-    df_transactions = spark.read.csv(os.path.join(data_path, "transactions.csv"), header=True, inferSchema=True)
-    df_user_logs = spark.read.csv(os.path.join(data_path, "user_logs.csv"), header=True, inferSchema=True)
+    df_train = spark.read.csv(os.path.join(data_path, "6f/aa8475570da65b17af858fc049cf6a"), header=True, inferSchema=True)
+    df_members = spark.read.csv(os.path.join(data_path, "06/c6508e09f6371c4b6259307e2fa429"), header=True, inferSchema=True)
+    df_transactions = spark.read.csv(os.path.join(data_path, "19/f32c65e29ef8cf87a5922d4b834b04"), header=True, inferSchema=True)
+    df_user_logs = spark.read.csv(os.path.join(data_path, "f8/43c4fbbc84627dfd344fa69322fc5e"), header=True, inferSchema=True)
     print("--- Data Loading Complete ---")
     print(f"Initial df_train row count: {df_train.count()}")
 
