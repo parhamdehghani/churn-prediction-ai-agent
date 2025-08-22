@@ -30,6 +30,11 @@ CLUSTER_CONFIG = {
             "executable_file": f"gs://{GCS_BUCKET_NAME}/code/dataproc_bootstrap.sh",
         }
     ],
+    "software_config": {
+        "properties": {
+            "spark:spark.dynamicAllocation.enabled": "false"
+        }
+    }
 }
 
 with DAG(
