@@ -15,8 +15,8 @@ def main():
     # Spark session is configured by Dataproc, no need for local memory settings
     spark = SparkSession.builder.appName("ChurnModelTrainingCloud").getOrCreate()
         
-    # Set the tracking URI to the MLflow service inside the GKE cluster
-    mlflow.set_tracking_uri("http://localhost:5001")
+    # Set the tracking URI to the MLflow service which is running locally on my machine
+    mlflow.set_tracking_uri("https://bda3bc39697b.ngrok-free.app")
     mlflow.set_experiment("KKBoxChurnPrediction")
 
     # --- Load Processed Data ---
@@ -48,10 +48,10 @@ def main():
 
         # Define hyperparameter grid
         paramGrid = ParamGridBuilder() \
-            .addGrid(xgb.n_estimators, [100, 200]) \
-            .addGrid(xgb.max_depth, [5]) \
-            .addGrid(xgb.learning_rate, [0.1]) \
-            .addGrid(xgb.subsample, [0.7]) \
+            .addGrid(xgb.n_estimators, [100, 200, 300, 400, 500, 700, 1000]) \
+            .addGrid(xgb.max_depth, [5, 7, 10, 15, 20]) \
+            .addGrid(xgb.learning_rate, [0.1, 0.05, 0.01]) \
+            .addGrid(xgb.subsample, [0.7, 0.8, 0.9, 1.0]) \
             .build()
 
         evaluator = BinaryClassificationEvaluator(labelCol="label", metricName="areaUnderROC")
@@ -83,7 +83,8 @@ def main():
         best_params = {
             "n_estimators": best_xgb_model.getOrDefault('n_estimators'),
             "max_depth": best_xgb_model.getOrDefault('max_depth'),
-            "learning_rate": best_xgb_model.getOrDefault('learning_rate')
+            "learning_rate": best_xgb_model.getOrDefault('learning_rate'),
+            "subsample": best_xgb_model.getOrDefault('subsample')
         }
         
         mlflow.log_params(best_params)
