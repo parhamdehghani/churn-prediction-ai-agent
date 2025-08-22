@@ -22,7 +22,7 @@ CLUSTER_CONFIG = {
         "machine_type_uri": "n1-standard-4",
     },
     "worker_config": {
-        "num_instances": 2,
+        "num_instances": 8,
         "machine_type_uri": "n1-standard-4",
     },
     "initialization_actions": [
