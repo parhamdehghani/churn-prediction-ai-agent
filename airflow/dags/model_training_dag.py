@@ -62,6 +62,9 @@ with DAG(
             "placement": {"cluster_name": CLUSTER_NAME},
             "pyspark_job": {
                 "main_python_file_uri": f"gs://{GCS_BUCKET_NAME}/code/model_training_cluster.py",
+                "properties": {
+                "spark.driver.memory": "8g"
+                }
             },
         },
         gcp_conn_id="google_cloud_default",
