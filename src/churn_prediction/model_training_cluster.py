@@ -48,10 +48,10 @@ def main():
 
         # Define hyperparameter grid
         paramGrid = ParamGridBuilder() \
-            .addGrid(xgb.n_estimators, [100, 200, 300, 400, 500, 700, 1000]) \
-            .addGrid(xgb.max_depth, [5, 7, 10, 15, 20]) \
+            .addGrid(xgb.n_estimators, [100, 300, 500, 700]) \
+            .addGrid(xgb.max_depth, [5, 7, 10]) \
             .addGrid(xgb.learning_rate, [0.1, 0.05, 0.01]) \
-            .addGrid(xgb.subsample, [0.7, 0.8, 0.9, 1.0]) \
+            .addGrid(xgb.subsample, [0.8, 1.0]) \
             .build()
 
         evaluator = BinaryClassificationEvaluator(labelCol="label", metricName="areaUnderROC")
@@ -60,8 +60,8 @@ def main():
             estimator=pipeline,
             estimatorParamMaps=paramGrid,
             evaluator=evaluator,
-            numFolds=4,
-            parallelism=6
+            numFolds=3,
+            parallelism=3
         )
         
         # Prepare data for the pipeline

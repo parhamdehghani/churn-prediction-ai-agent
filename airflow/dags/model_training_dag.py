@@ -19,7 +19,7 @@ CLUSTER_NAME = "ephemeral-training-cluster"
 CLUSTER_CONFIG = {
     "master_config": {
         "num_instances": 1,
-        "machine_type_uri": "n1-standard-4",
+        "machine_type_uri": "n1-highmem-4",
     },
     "worker_config": {
         "num_instances": 8,
@@ -63,7 +63,7 @@ with DAG(
             "pyspark_job": {
                 "main_python_file_uri": f"gs://{GCS_BUCKET_NAME}/code/model_training_cluster.py",
                 "properties": {
-                "spark.driver.memory": "8g"
+                "spark.driver.memory": "16g"
                 }
             },
         },
