@@ -39,7 +39,7 @@ For cost-effectiveness in a portfolio setting, the final public endpoint is host
 You can test the live endpoint by sending a POST request with the following `curl` command:
 
 ```bash
-curl -X POST "[https://churn-api-service-rdxj3z25yq-uc.a.run.app/predict](https://churn-api-service-rdxj3z25yq-uc.a.run.app/predict)" \
+curl -X POST "https://churn-api-service-rdxj3z25yq-uc.a.run.app/predict" \
 -H "Content-Type: application/json" \
 -d '{
   "transaction_count": 15,
